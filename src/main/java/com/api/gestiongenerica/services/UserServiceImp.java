@@ -20,7 +20,33 @@ public class UserServiceImp implements UserServiceI{
     @Override
     public UserDto actualizarUsuario(String correo, UserDto userDto) {
         User user = userRepositoryI.findByCorreo(correo);
+
         user.setNombre(userDto.getNombre());
+        user.setApellidos(userDto.getApellidos());
+        user.setCorreo(userDto.getCorreo());
+        user.setEdad(userDto.getEdad());
+        user.setDireccion(userDto.getDireccion());
+        user.setTelefono(userDto.getTelefono());
+
+        User usuarioActualizado = userRepositoryI.save(user);
+
+        return convertToDto(usuarioActualizado);
+    }
+
+    /**
+     * Convierte un objeto User en un objeto UserDto.
+     *
+     * @param user Objeto User a convertir.
+     * @return Objeto UserDto convertido.
+     */
+    private UserDto convertToDto(User user) {
+        UserDto userDto = new UserDto();
+        userDto.setNombre(user.getNombre());
+        userDto.setApellidos(user.getApellidos());
+        userDto.setCorreo(user.getCorreo());
+        userDto.setEdad(user.getEdad());
+        userDto.setDireccion(user.getDireccion());
+        userDto.setTelefono(user.getTelefono());
         return userDto;
     }
 }
