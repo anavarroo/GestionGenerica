@@ -17,6 +17,13 @@ public class UserServiceImp implements UserServiceI{
         this.userRepositoryI = userRepositoryI;
     }
 
+
+    @Override
+    public User crearUsuario(User user) {
+        // Aquí podrías implementar lógica adicional, como validación de datos
+        return userRepositoryI.save(user);
+    }
+
     @Override
     public UserDto consultarUsuario(String correo) {
         User user = userRepositoryI.findByCorreo(correo);
