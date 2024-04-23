@@ -1,32 +1,20 @@
 package com.api.gestiongenerica.controllers;
 
-import com.api.gestiongenerica.persistence.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.api.gestiongenerica.services.UserServiceI;
-
+import com.api.gestiongenerica.services.UserServiceImp;
 
 @RestController
-@RequestMapping("/api/v1/usuarios")
+@RequestMapping("/api/v1/Usuarios")
 @CrossOrigin
 public class UserController {
 
-    private final UserServiceI userService;
-
     @Autowired
-    public UserController(UserServiceI userService) {
-        this.userService = userService;
-    }
-
-    @PostMapping
-    public ResponseEntity<User> crearUsuario(@RequestBody User user) {
-        User nuevoUsuario = userService.crearUsuario(user);
-        return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
-    }
-
-
+    private UserServiceI userServiceI;
 
 }
