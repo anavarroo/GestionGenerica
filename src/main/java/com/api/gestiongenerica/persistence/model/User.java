@@ -3,7 +3,7 @@ package com.api.gestiongenerica.persistence.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,44 +11,45 @@ import lombok.NoArgsConstructor;
 @Table(name = "Usuarios")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     /** Identificador unico del usuario **/
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_Usuario")
-    private long IDUsuario;
+    @Column(name = "id")
+    private long id;
 
     /** Nombre de usuario **/
-    @Column(name = "Nombre", nullable = false)
+    @Column(name = "nombre", nullable = false)
     @NotBlank(message = "El nombre no puede estar vacio")
     private String nombre;
 
     /** Apellidos del usuario **/
-    @Column(name = "Apellidos", nullable = false)
+    @Column(name = "apellidos", nullable = false)
     @NotBlank(message = "Los apellidos no puede estar vacio")
     private String apellidos;
 
     /** Edad del usuario **/
-    @Column(name = "Edad", nullable = false)
+    @Column(name = "edad", nullable = false)
     private int edad;
 
     /** Email del usuario **/
-    @Column(name = "Email", unique = true, nullable = false)
-    @Email(message = "The email cannot be empty")
+    @Column(name = "correo", unique = true, nullable = false)
+    @Email(message = "El correo no puede estar vacio")
     private String correo;
 
-    @Column(name = "Apellidos", nullable = false)
+    /** Direccion del usuario **/
+    @Column(name = "direccion", nullable = false)
     @NotBlank(message = "La direccion no puede estar vacia")
     private String direccion;
 
-    @Column(name = "Telefono", nullable = false)
-    @Size(min = 9, max = 9, message = "El telefono tiene que tener 9 numeros")
+    /** Telefono del usuario **/
+    @Column(name = "telefono", nullable = false)
     private int telefono;
 
-    @Column(name = "password", nullable = false)
-    @NotBlank(message = "The password cannot be empty")
-    private String password;
-
-    
+    /** Contraseña del usuario **/
+    @Column(name = "contrasena", nullable = false)
+    @NotBlank(message = "La contraseña no puede estar vacia")
+    private String contrasena;
 }
