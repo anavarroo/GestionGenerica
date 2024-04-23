@@ -7,6 +7,12 @@ import com.api.gestiongenerica.persistence.model.User;
 
 @Repository
 public interface UserRepositoryI extends JpaRepository<User, Long>{
-    
 
+    /**
+     * Busca un usuario por su correo.
+     *
+     * @param correo Correo de usuario a buscar.
+     * @return Usuario encontrado.
+     */
+    User findByCorreo(String correo);
 }

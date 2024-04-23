@@ -8,11 +8,16 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Usuarios")
 @Data
 @NoArgsConstructor
+<<<<<<< HEAD
+=======
+@AllArgsConstructor
+>>>>>>> alejandro
 public class User implements Serializable {
 
     /** Identificador unico del usuario **/
