@@ -32,5 +32,9 @@ public class UserController {
         UserDto usuarioActualizado = userServiceI.actualizarUsuario(correo, userDto);
         return ResponseEntity.ok(usuarioActualizado);
     }
+    @DeleteMapping("/{correo}")
+    public void borrarUsuarioPorEmail(@PathVariable String correo) {
+        userServiceI.borrarUsuarioPorEmail(correo);
+    }
 
 }

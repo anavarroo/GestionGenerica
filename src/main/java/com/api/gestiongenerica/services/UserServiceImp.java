@@ -49,4 +49,14 @@ public class UserServiceImp implements UserServiceI{
         userDto.setTelefono(user.getTelefono());
         return userDto;
     }
+
+    @Override
+    public void borrarUsuarioPorEmail(String correo) {
+        User user = userRepositoryI.findByCorreo(correo);
+        if (user != null) {
+            userRepositoryI.delete(user);
+        } else {
+            throw new RuntimeException("No se encontró ningún usuario con el correo electrónico proporcionado: " + correo);
+        }
+    }
 }
