@@ -22,6 +22,19 @@ public class UserController {
      * Edita los datos de un usuario.
      *
      * @param correo Objeto UserDto con la nueva descripción del usuario.
+     * @return ResponseEntity con el objeto UserDto actualizado.
+     */
+    @GetMapping("/{correo}")
+    public ResponseEntity<UserDto> consultarUsuario(
+            @PathVariable String correo) {
+        UserDto userDto = userServiceI.consultarUsuario(correo);
+        return ResponseEntity.ok(userDto);
+    }
+
+    /**
+     * Edita los datos de un usuario.
+     *
+     * @param correo Objeto UserDto con la nueva descripción del usuario.
      * @param userDto Objeto Authentication para obtener el nombre de usuario del usuario autenticado.
      * @return ResponseEntity con el objeto UserDto actualizado.
      */
