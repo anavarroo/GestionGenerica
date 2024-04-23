@@ -27,7 +27,11 @@ public interface UserServiceI {
      * @return DTO del usuario actualizado.
      */
     UserDto actualizarUsuario(String correo, UserDto userDto);
+<<<<<<< HEAD
 
 
     User crearUsuario(User user);
+=======
+    void borrarUsuarioPorEmail(String email);
+>>>>>>> joseluis
 }
