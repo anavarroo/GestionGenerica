@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "Usuarios")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     /** Identificador unico del usuario **/
@@ -34,21 +36,22 @@ public class User {
     private int edad;
 
     /** Email del usuario **/
-    @Column(name = "Email", unique = true, nullable = false)
-    @Email(message = "The email cannot be empty")
+    @Column(name = "Correo", unique = true, nullable = false)
+    @Email(message = "El correo no puede estar vacio")
     private String correo;
 
+    /** Direccion del usuario **/
     @Column(name = "Apellidos", nullable = false)
     @NotBlank(message = "La direccion no puede estar vacia")
     private String direccion;
 
+    /** Telefono del usuario **/
     @Column(name = "Telefono", nullable = false)
     @Size(min = 9, max = 9, message = "El telefono tiene que tener 9 numeros")
     private int telefono;
 
+    /** Contraseña del usuario **/
     @Column(name = "password", nullable = false)
-    @NotBlank(message = "The password cannot be empty")
+    @NotBlank(message = "La contraseña no puede estar vacia")
     private String password;
-
-    
 }
