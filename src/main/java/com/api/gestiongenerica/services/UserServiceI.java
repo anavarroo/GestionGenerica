@@ -1,5 +1,8 @@
 package com.api.gestiongenerica.services;
 
+import com.api.gestiongenerica.persistence.model.User;
+
+import com.api.gestiongenerica.persistence.dto.UserDto;
 
 import com.api.gestiongenerica.persistence.dto.UserDto;
 
@@ -22,4 +25,7 @@ public interface UserServiceI {
      */
     UserDto actualizarUsuario(String correo, UserDto userDto);
 
+    User crearUsuario(User user);
+
+    void borrarUsuarioPorEmail(String email);
 }
