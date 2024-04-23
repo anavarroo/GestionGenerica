@@ -18,6 +18,13 @@ public class UserServiceImp implements UserServiceI{
     }
 
     @Override
+    public UserDto consultarUsuario(String correo) {
+        User user = userRepositoryI.findByCorreo(correo);
+
+        return convertToDto(user);
+    }
+
+    @Override
     public UserDto actualizarUsuario(String correo, UserDto userDto) {
         User user = userRepositoryI.findByCorreo(correo);
 
