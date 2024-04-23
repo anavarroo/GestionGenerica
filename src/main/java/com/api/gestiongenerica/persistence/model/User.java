@@ -1,5 +1,7 @@
 package com.api.gestiongenerica.persistence.model;
 
+import java.io.Serializable;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -11,8 +13,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "Usuarios")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class User {
+public class User implements Serializable {
 
     /** Identificador unico del usuario **/
     @Id
