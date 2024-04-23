@@ -24,7 +24,11 @@
 <<<<<<< HEAD
 
 =======
+<<<<<<< HEAD
 >>>>>>> main
+=======
+>>>>>>> alejandro
+>>>>>>> 8df3f74459fda19c1fd42a34fc9d3d46aa3ba138
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
@@ -62,7 +66,11 @@
 
 
 =======
+<<<<<<< HEAD
 >>>>>>> main
+=======
+>>>>>>> alejandro
+>>>>>>> 8df3f74459fda19c1fd42a34fc9d3d46aa3ba138
 	</dependencies>
 
 	<build>

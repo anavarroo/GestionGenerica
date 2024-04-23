@@ -68,6 +68,10 @@ public class UserServiceImp implements UserServiceI {
         userDto.setDireccion(user.getDireccion());
         userDto.setTelefono(user.getTelefono());
         return userDto;
+<<<<<<< HEAD
 >>>>>>> main
+=======
+>>>>>>> alejandro
+>>>>>>> 8df3f74459fda19c1fd42a34fc9d3d46aa3ba138
     }
 }

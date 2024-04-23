@@ -17,7 +17,11 @@ import java.io.Serializable;
 <<<<<<< HEAD
 =======
 @AllArgsConstructor
+<<<<<<< HEAD
 >>>>>>> main
+=======
+>>>>>>> alejandro
+>>>>>>> 8df3f74459fda19c1fd42a34fc9d3d46aa3ba138
 public class User implements Serializable {
 
     /** Identificador unico del usuario **/

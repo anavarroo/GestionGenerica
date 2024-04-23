@@ -15,7 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.api.gestiongenerica.services.UserServiceI;
+<<<<<<< HEAD
 >>>>>>> main
+=======
+>>>>>>> alejandro
+>>>>>>> 8df3f74459fda19c1fd42a34fc9d3d46aa3ba138
 
 @RestController
 @RequestMapping("/api/v1/usuarios")
@@ -72,6 +76,10 @@ public class UserController {
         UserDto usuarioActualizado = userServiceI.actualizarUsuario(correo, userDto);
         return ResponseEntity.ok(usuarioActualizado);
     }
+<<<<<<< HEAD
 >>>>>>> main
+=======
+>>>>>>> alejandro
+>>>>>>> 8df3f74459fda19c1fd42a34fc9d3d46aa3ba138
 
 }
