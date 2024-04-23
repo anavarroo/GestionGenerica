@@ -25,7 +25,7 @@ public class UserController {
      * @param userDto Objeto Authentication para obtener el nombre de usuario del usuario autenticado.
      * @return ResponseEntity con el objeto UserDto actualizado.
      */
-    @PutMapping("/editar")
+    @PutMapping("/editar/{correo}")
     public ResponseEntity<UserDto> actualizarUsuario(
             @PathVariable String correo,
             @RequestBody UserDto userDto) {
