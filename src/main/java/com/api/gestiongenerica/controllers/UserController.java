@@ -65,7 +65,7 @@ public class UserController {
 
 
     /**
-     * Elimina un usuario de la base de datos utilizando su dirección de correo electrónico como identificador único.
+     * Elimina un usuario de la base de datos utilizando su direccion de correo electrónico como identificador único.
      *
      * @param correo La dirección de correo electrónico del usuario que se va a eliminar.
      */
