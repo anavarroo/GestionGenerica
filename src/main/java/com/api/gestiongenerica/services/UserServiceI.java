@@ -1,9 +1,20 @@
 package com.api.gestiongenerica.services;
 
+import com.api.gestiongenerica.persistence.model.User;
+
+import com.api.gestiongenerica.persistence.dto.UserDto;
 
 import com.api.gestiongenerica.persistence.dto.UserDto;
 
 public interface UserServiceI {
+
+    /**
+     * Muestra un usuario segun su correo.
+     *
+     * @param correo Correo del usuario que se busca.
+     * @return DTO del usuario encontrado.
+     */
+    UserDto consultarUsuario(String correo);
 
     /**
      * Actualiza la descripción de un usuario.
@@ -13,5 +24,8 @@ public interface UserServiceI {
      * @return DTO del usuario actualizado.
      */
     UserDto actualizarUsuario(String correo, UserDto userDto);
+
+    User crearUsuario(User user);
+
     void borrarUsuarioPorEmail(String email);
 }
