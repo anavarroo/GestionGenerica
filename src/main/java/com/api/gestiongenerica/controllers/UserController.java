@@ -20,11 +20,19 @@ public class UserController {
         this.userServiceI = userServiceI;
     }
 
+
+    /**
+     * Crea un nuevo usuario en el sistema utilizando los datos proporcionados en el cuerpo de la solicitud.
+     *
+     * @param user El objeto User que contiene los datos del nuevo usuario a crear.
+     * @return Un objeto ResponseEntity que contiene el nuevo usuario creado y el estado HTTP 201 Created.
+     */
     @PostMapping("/crear")
     public ResponseEntity<User> crearUsuario(@RequestBody User user) {
         User nuevoUsuario = userServiceI.crearUsuario(user);
         return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
     }
+
 
     /**
      * Consultar un usuario por su correo.
@@ -38,6 +46,7 @@ public class UserController {
         UserDto userDto = userServiceI.consultarUsuario(correo);
         return ResponseEntity.ok(userDto);
     }
+
 
     /**
      * Edita los datos de un usuario.
@@ -53,10 +62,19 @@ public class UserController {
         UserDto usuarioActualizado = userServiceI.actualizarUsuario(correo, userDto);
         return ResponseEntity.ok(usuarioActualizado);
     }
+<<<<<<< HEAD
     /**
      * Controlador REST que maneja la solicitud para eliminar un usuario por su dirección de correo electrónico.
      *
      * @param correo La dirección de correo electrónico del usuario a eliminar.
+=======
+
+
+    /**
+     * Elimina un usuario de la base de datos utilizando su direccion de correo electrónico como identificador único.
+     *
+     * @param correo La dirección de correo electrónico del usuario que se va a eliminar.
+>>>>>>> features
      */
     @DeleteMapping("borrar/{correo}")
     public void borrarUsuarioPorEmail(@PathVariable String correo) {
