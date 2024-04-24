@@ -26,7 +26,18 @@ public interface UserServiceI {
      */
     UserDto actualizarUsuario(String correo, UserDto userDto);
 
+    /**
+     * Crea un nuevo usuario en el sistema, encriptando la contraseña antes de guardarla en la base de datos.
+     *
+     * @param user El objeto User que representa al nuevo usuario a crear.
+     * @return El objeto User creado y guardado en la base de datos.
+     */
     User crearUsuario(User user);
 
+    /**
+     * Elimina un usuario de la base de datos por su dirección de correo electrónico.
+     *
+     * @param email La dirección de correo electrónico del usuario a eliminar.
+     */
     void borrarUsuarioPorEmail(String email);
 }
