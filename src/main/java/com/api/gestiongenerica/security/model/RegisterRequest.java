@@ -1,5 +1,6 @@
 package com.api.gestiongenerica.security.model;
 
+import com.api.gestiongenerica.persistence.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,4 +28,6 @@ public class RegisterRequest {
 
     /** La contraseña proporcionada en la solicitud de registro. */
     private String contrasena;
+
+    private Role role;
 }

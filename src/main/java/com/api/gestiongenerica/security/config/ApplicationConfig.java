@@ -1,5 +1,6 @@
 package com.api.gestiongenerica.security.config;
 
+import com.api.gestiongenerica.persistence.model.User;
 import com.api.gestiongenerica.persistence.repository.UserRepositoryI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -7,9 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -55,7 +58,13 @@ public class ApplicationConfig {
      */
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> (UserDetails) userRepo.findByCorreo(username);
+        return username -> {
+            User user = userRepo.findByCorreo(username);
+            if (user == null) {
+                throw new UsernameNotFoundException("Usuario no encontrado");
+            }
+            return user;
+        };
     }
 
     /**

@@ -43,7 +43,7 @@ public class AuthServiceImpl implements AuthServiceI {
                 request.getApellidos(), request.getEdad(), request.getCorreo(),
                 request.getDireccion(), request.getTelefono(),
                 passwordEncoder.encode(request.getContrasena()),
-                Role.USER);
+                request.getRole());
 
         userRepo.save(user);
 
