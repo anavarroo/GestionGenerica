@@ -17,7 +17,7 @@ public class UserServiceImp implements UserServiceI{
         this.userRepositoryI = userRepositoryI;
     }
 
-<<<<<<< HEAD
+
 
     @Override
     public User crearUsuario(User user) {
@@ -25,14 +25,13 @@ public class UserServiceImp implements UserServiceI{
         return userRepositoryI.save(user);
     }
 
-=======
+
     /**
      * Encuentra un usuario por su correo y devuelve su DTO.
      *
      * @param correo Correo del usuario a buscar.
      * @return DTO del usuario encontrado.
      */
->>>>>>> dbc021054ac38801ba0908d72faf15af95b2cde5
     @Override
     public UserDto consultarUsuario(String correo) {
         User user = userRepositoryI.findByCorreo(correo);
