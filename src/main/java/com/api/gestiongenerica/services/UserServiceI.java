@@ -9,8 +9,7 @@ import com.api.gestiongenerica.persistence.dto.UserDto;
 public interface UserServiceI {
 
     /**
-<<<<<<< HEAD
-=======
+
      * Muestra un usuario segun su correo.
      *
      * @param correo Correo del usuario que se busca.
@@ -19,7 +18,6 @@ public interface UserServiceI {
     UserDto consultarUsuario(String correo);
 
     /**
->>>>>>> alejandro
      * Actualiza la descripción de un usuario.
      *
      * @param correo Correo del usuario a actualizar.
@@ -28,6 +26,7 @@ public interface UserServiceI {
      */
     UserDto actualizarUsuario(String correo, UserDto userDto);
 
-
     User crearUsuario(User user);
+
+    void borrarUsuarioPorEmail(String email);
 }

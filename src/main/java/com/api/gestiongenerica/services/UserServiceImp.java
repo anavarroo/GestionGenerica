@@ -18,12 +18,20 @@ public class UserServiceImp implements UserServiceI{
     }
 
 
+
     @Override
     public User crearUsuario(User user) {
         // Aquí podrías implementar lógica adicional, como validación de datos
         return userRepositoryI.save(user);
     }
 
+
+    /**
+     * Encuentra un usuario por su correo y devuelve su DTO.
+     *
+     * @param correo Correo del usuario a buscar.
+     * @return DTO del usuario encontrado.
+     */
     @Override
     public UserDto consultarUsuario(String correo) {
         User user = userRepositoryI.findByCorreo(correo);
@@ -31,6 +39,13 @@ public class UserServiceImp implements UserServiceI{
         return convertToDto(user);
     }
 
+    /**
+     * Actualiza la informacion de un usuario y devuelve su DTO actualizado.
+     *
+     * @param correo Correo del usuario cuya informacion se actualizará.
+     * @param userDto DTO del usuario con la nueva informacion.
+     * @return DTO del usuario actualizado.
+     */
     @Override
     public UserDto actualizarUsuario(String correo, UserDto userDto) {
         User user = userRepositoryI.findByCorreo(correo);
