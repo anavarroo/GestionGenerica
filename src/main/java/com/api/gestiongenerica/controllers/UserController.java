@@ -53,7 +53,11 @@ public class UserController {
         UserDto usuarioActualizado = userServiceI.actualizarUsuario(correo, userDto);
         return ResponseEntity.ok(usuarioActualizado);
     }
-
+    /**
+     * Controlador REST que maneja la solicitud para eliminar un usuario por su dirección de correo electrónico.
+     *
+     * @param correo La dirección de correo electrónico del usuario a eliminar.
+     */
     @DeleteMapping("borrar/{correo}")
     public void borrarUsuarioPorEmail(@PathVariable String correo) {
         userServiceI.borrarUsuarioPorEmail(correo);

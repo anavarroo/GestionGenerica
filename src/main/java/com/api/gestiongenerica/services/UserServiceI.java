@@ -27,6 +27,10 @@ public interface UserServiceI {
     UserDto actualizarUsuario(String correo, UserDto userDto);
 
     User crearUsuario(User user);
-
+    /**
+     * Elimina un usuario por su dirección de correo electrónico.
+     *
+     * @param email La dirección de correo electrónico del usuario a eliminar.
+     */
     void borrarUsuarioPorEmail(String email);
 }

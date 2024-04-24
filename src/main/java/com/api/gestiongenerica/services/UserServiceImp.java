@@ -62,7 +62,12 @@ public class UserServiceImp implements UserServiceI{
 
         return convertToDto(usuarioActualizado);
     }
-
+    /**
+     * Elimina un usuario mediante su dirección de correo electrónico.
+     *
+     * @param correo La dirección de correo electrónico del usuario a eliminar.
+     * @throws UsernameNotFoundException Si no se encuentra ningún usuario con la dirección de correo proporcionada.
+     */
     @Override
     public void borrarUsuarioPorEmail(String correo) {
         User user = userRepositoryI.findByCorreo(correo);
