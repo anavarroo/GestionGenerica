@@ -20,7 +20,7 @@ public class UserController {
         this.userServiceI = userServiceI;
     }
 
-    @PostMapping
+    @PostMapping("/crear")
     public ResponseEntity<User> crearUsuario(@RequestBody User user) {
         User nuevoUsuario = userServiceI.crearUsuario(user);
         return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
@@ -52,6 +52,11 @@ public class UserController {
             @RequestBody UserDto userDto) {
         UserDto usuarioActualizado = userServiceI.actualizarUsuario(correo, userDto);
         return ResponseEntity.ok(usuarioActualizado);
+    }
+
+    @DeleteMapping("borrar/{correo}")
+    public void borrarUsuarioPorEmail(@PathVariable String correo) {
+        userServiceI.borrarUsuarioPorEmail(correo);
     }
 
 }

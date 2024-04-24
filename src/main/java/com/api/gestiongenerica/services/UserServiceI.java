@@ -26,6 +26,7 @@ public interface UserServiceI {
      */
     UserDto actualizarUsuario(String correo, UserDto userDto);
 
-
     User crearUsuario(User user);
+
+    void borrarUsuarioPorEmail(String email);
 }
