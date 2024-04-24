@@ -3,6 +3,7 @@ package com.api.gestiongenerica.services;
 import com.api.gestiongenerica.persistence.dto.UserDto;
 import com.api.gestiongenerica.persistence.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.api.gestiongenerica.persistence.repository.UserRepositoryI;
@@ -68,7 +69,7 @@ public class UserServiceImp implements UserServiceI{
         if (user != null) {
             userRepositoryI.delete(user);
         } else {
-            throw new RuntimeException("No se encontró ningún usuario con el correo electrónico proporcionado: " + correo);
+            throw new UsernameNotFoundException("No se encontró ningún usuario con el correo electrónico proporcionado: " + correo);
         }
     }
 
