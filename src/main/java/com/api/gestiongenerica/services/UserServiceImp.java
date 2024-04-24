@@ -17,11 +17,14 @@ public class UserServiceImp implements UserServiceI{
         this.userRepositoryI = userRepositoryI;
     }
 
+
+
     @Override
     public User crearUsuario(User user) {
         // Aquí podrías implementar lógica adicional, como validación de datos
         return userRepositoryI.save(user);
     }
+
 
     /**
      * Encuentra un usuario por su correo y devuelve su DTO.
@@ -59,6 +62,16 @@ public class UserServiceImp implements UserServiceI{
         return convertToDto(usuarioActualizado);
     }
 
+    @Override
+    public void borrarUsuarioPorEmail(String correo) {
+        User user = userRepositoryI.findByCorreo(correo);
+        if (user != null) {
+            userRepositoryI.delete(user);
+        } else {
+            throw new RuntimeException("No se encontró ningún usuario con el correo electrónico proporcionado: " + correo);
+        }
+    }
+
     /**
      * Convierte un objeto User en un objeto UserDto.
      *
@@ -74,15 +87,5 @@ public class UserServiceImp implements UserServiceI{
         userDto.setDireccion(user.getDireccion());
         userDto.setTelefono(user.getTelefono());
         return userDto;
-    }
-
-    @Override
-    public void borrarUsuarioPorEmail(String correo) {
-        User user = userRepositoryI.findByCorreo(correo);
-        if (user != null) {
-            userRepositoryI.delete(user);
-        } else {
-            throw new RuntimeException("No se encontró ningún usuario con el correo electrónico proporcionado: " + correo);
-        }
     }
 }
