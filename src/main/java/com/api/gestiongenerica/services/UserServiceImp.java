@@ -4,6 +4,7 @@ import com.api.gestiongenerica.persistence.dto.UserDto;
 import com.api.gestiongenerica.persistence.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.api.gestiongenerica.persistence.repository.UserRepositoryI;
@@ -19,11 +20,22 @@ public class UserServiceImp implements UserServiceI{
     }
 
 
-
+    /**
+     * Crea un nuevo usuario en el sistema, encriptando la contraseña antes de guardarla en la base de datos.
+     *
+     * @param user El objeto User que representa al nuevo usuario a crear.
+     * @return El objeto User creado y guardado en la base de datos.
+     */
     @Override
     public User crearUsuario(User user) {
-        // Aquí podrías implementar lógica adicional, como validación de datos
-        return userRepositoryI.save(user);
+        String contrasenaSinEncriptar = user.getContrasena();
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String contrasenaEncriptada = encoder.encode(contrasenaSinEncriptar);
+
+        user.setContrasena(contrasenaEncriptada);
+
+         return userRepositoryI.save(user);
     }
 
 
@@ -39,6 +51,7 @@ public class UserServiceImp implements UserServiceI{
 
         return convertToDto(user);
     }
+
 
     /**
      * Actualiza la informacion de un usuario y devuelve su DTO actualizado.
@@ -63,6 +76,13 @@ public class UserServiceImp implements UserServiceI{
         return convertToDto(usuarioActualizado);
     }
 
+
+    /**
+     * Elimina un usuario de la base de datos utilizando su dirección de correo electrónico como identificador único.
+     *
+     * @param correo La dirección de correo electrónico del usuario que se va a eliminar.
+     * @throws UsernameNotFoundException Si no se encuentra ningún usuario con la dirección de correo electrónico proporcionada.
+     */
     @Override
     public void borrarUsuarioPorEmail(String correo) {
         User user = userRepositoryI.findByCorreo(correo);
@@ -72,6 +92,7 @@ public class UserServiceImp implements UserServiceI{
             throw new UsernameNotFoundException("No se encontró ningún usuario con el correo electrónico proporcionado: " + correo);
         }
     }
+
 
     /**
      * Convierte un objeto User en un objeto UserDto.
