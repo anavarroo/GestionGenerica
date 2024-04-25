@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -29,5 +31,5 @@ public class RegisterRequest {
     /** La contraseña proporcionada en la solicitud de registro. */
     private String contrasena;
 
-    private Role role;
+    private Set<Role> roles;
 }
