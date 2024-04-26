@@ -30,14 +30,14 @@ public interface UserServiceI {
      * @return El objeto User creado y guardado en la base de datos.
      */
     User crearUsuario(User user);
-<<<<<<< HEAD
+
     /**
      * Elimina un usuario por su dirección de correo electrónico.
-=======
+
 
     /**
      * Elimina un usuario de la base de datos por su dirección de correo electrónico.
->>>>>>> features
+
      *
      * @param email La dirección de correo electrónico del usuario a eliminar.
      */

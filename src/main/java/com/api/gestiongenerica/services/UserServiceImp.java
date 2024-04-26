@@ -76,7 +76,7 @@ public class UserServiceImp implements UserServiceI{
 
         return convertToDto(usuarioActualizado);
     }
-<<<<<<< HEAD
+
     /**
      * Elimina un usuario mediante su dirección de correo electrónico.
      *
