@@ -4,12 +4,9 @@ import com.api.gestiongenerica.persistence.model.User;
 
 import com.api.gestiongenerica.persistence.dto.UserDto;
 
-import com.api.gestiongenerica.persistence.dto.UserDto;
-
 public interface UserServiceI {
 
     /**
-
      * Muestra un usuario segun su correo.
      *
      * @param correo Correo del usuario que se busca.
