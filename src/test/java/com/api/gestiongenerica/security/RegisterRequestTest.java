@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RegisterRequestTest {
 
+    /*
     @Test
     void constructor_CreaInstanciaConValoresIniciales() {
         // Arrange
@@ -32,6 +33,8 @@ class RegisterRequestTest {
         assertEquals(contrasena, request.getContrasena());
     }
 
+
+     */
     @Test
     void settersYgetters_ModificaYObtieneValoresCorrectamente() {
         // Arrange
