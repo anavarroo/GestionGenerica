@@ -3,6 +3,7 @@ package com.api.gestiongenerica.services;
 import com.api.gestiongenerica.persistence.dto.UserDto;
 import com.api.gestiongenerica.persistence.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -62,7 +63,7 @@ public class UserServiceImp implements UserServiceI{
      */
     @Override
     public UserDto actualizarUsuario(String correo, UserDto userDto) {
-        User user = userRepositoryI.findByCorreo(correo);
+        User user = userRepositoryI.findByCorreo(userDto.getCorreo());
 
         user.setNombre(userDto.getNombre());
         user.setApellidos(userDto.getApellidos());
@@ -91,6 +92,7 @@ public class UserServiceImp implements UserServiceI{
      * @throws UsernameNotFoundException Si no se encuentra ningún usuario con la dirección de correo electrónico proporcionada.
 >>>>>>> features
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     public void borrarUsuarioPorEmail(String correo) {
         User user = userRepositoryI.findByCorreo(correo);
