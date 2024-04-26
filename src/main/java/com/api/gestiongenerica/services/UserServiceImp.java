@@ -63,7 +63,7 @@ public class UserServiceImp implements UserServiceI{
      */
     @Override
     public UserDto actualizarUsuario(String correo, UserDto userDto) {
-        User user = userRepositoryI.findByCorreo(userDto.getCorreo());
+        User user = userRepositoryI.findByCorreo(correo);
 
         user.setNombre(userDto.getNombre());
         user.setApellidos(userDto.getApellidos());
@@ -84,7 +84,6 @@ public class UserServiceImp implements UserServiceI{
      * @param correo La dirección de correo electrónico del usuario que se va a eliminar.
      * @throws UsernameNotFoundException Si no se encuentra ningún usuario con la dirección de correo electrónico proporcionada.
      */
-    @PreAuthorize("hasRole('ADMIN')")
     @Override
     public void borrarUsuarioPorEmail(String correo) {
         User user = userRepositoryI.findByCorreo(correo);
