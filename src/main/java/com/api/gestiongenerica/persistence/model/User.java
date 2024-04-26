@@ -11,8 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 @Entity
 @Table(name = "Usuarios")
@@ -60,11 +59,14 @@ public class User implements Serializable, UserDetails {
     @NotBlank(message = "La contraseña no puede estar vacia")
     private String contrasena;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "usuarios_roles",
+        joinColumns = @JoinColumn(name = "usuario_id"),
+        inverseJoinColumns = @JoinColumn(name = "rol_id"))
+    private Set<Role> roles = new HashSet<>();
 
     public User(String nombre, String apellidos, int edad, String correo,
-                String direccion, int telefono, String contrasena, Role role) {
+                String direccion, int telefono, String contrasena, Set<Role> roles) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.edad = edad;
@@ -72,12 +74,18 @@ public class User implements Serializable, UserDetails {
         this.direccion = direccion;
         this.telefono = telefono;
         this.contrasena = contrasena;
-        this.role = role;
+        this.roles = roles;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role.name()));
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+
+        return authorities;
     }
 
     @Override

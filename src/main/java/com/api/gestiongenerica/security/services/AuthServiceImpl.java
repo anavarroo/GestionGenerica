@@ -1,6 +1,5 @@
 package com.api.gestiongenerica.security.services;
 
-import com.api.gestiongenerica.persistence.model.Role;
 import com.api.gestiongenerica.persistence.model.User;
 import com.api.gestiongenerica.persistence.repository.UserRepositoryI;
 import com.api.gestiongenerica.security.model.AuthResponse;
@@ -43,7 +42,7 @@ public class AuthServiceImpl implements AuthServiceI {
                 request.getApellidos(), request.getEdad(), request.getCorreo(),
                 request.getDireccion(), request.getTelefono(),
                 passwordEncoder.encode(request.getContrasena()),
-                request.getRole());
+                request.getRoles());
 
         userRepo.save(user);
 
