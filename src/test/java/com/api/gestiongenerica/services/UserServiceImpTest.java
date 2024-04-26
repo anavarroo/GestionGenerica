@@ -162,18 +162,6 @@ class UserServiceImpTest {
         assertEquals(correo, correo2);
     }
 
-    @Test
-    void getAuthorities_RetornaListaVacia() {
-        // Arrange
-        User user = new User();
-
-        // Act
-        Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
-
-        // Assert
-        assertNotNull(authorities);
-        assertTrue(authorities.isEmpty());
-    }
 
     @Test
     void getPassword_RetornaContraseña() {

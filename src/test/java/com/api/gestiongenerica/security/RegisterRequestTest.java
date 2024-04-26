@@ -1,5 +1,6 @@
 package com.api.gestiongenerica.security;
 
+import com.api.gestiongenerica.persistence.model.Role;
 import com.api.gestiongenerica.security.model.RegisterRequest;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +19,7 @@ class RegisterRequestTest {
         String contrasena = "password";
 
         // Act
-        RegisterRequest request = new RegisterRequest(nombre, apellidos, edad, correo, direccion, telefono, contrasena);
+        RegisterRequest request = new RegisterRequest(nombre, apellidos, edad, correo, direccion, telefono, contrasena, Role.USER);
 
         // Assert
         assertNotNull(request);

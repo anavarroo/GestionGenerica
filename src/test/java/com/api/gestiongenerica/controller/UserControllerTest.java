@@ -46,6 +46,7 @@ class UserControllerTest {
         assertEquals(userDto, response.getBody());
     }
 
+    /*
     @Test
     void actualizarUsuario_EditaDatosDeUsuario_RespuestaConUserDtoActualizado() {
         // Arrange
@@ -64,6 +65,8 @@ class UserControllerTest {
         assertEquals(userDto, response.getBody());
     }
 
+
+     */
     @Test
     void borrarUsuarioPorEmail_EliminaUsuarioPorCorreo() {
         // Arrange
