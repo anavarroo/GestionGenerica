@@ -32,6 +32,8 @@ class UserServiceImpTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
+        userService = new UserServiceImp(userRepository);
+
     }
 
     /*
@@ -151,6 +153,76 @@ class UserServiceImpTest {
     }
 
      */
+    @Test
+    void testCrearUsuario() {
+        User user = new User();
+        user.setCorreo("test@example.com");
+        user.setContrasena("password");
+
+        when(userRepository.save(any(User.class))).thenReturn(user);
+
+        User createdUser = userService.crearUsuario(user);
+
+        assertNotNull(createdUser);
+        assertEquals("test@example.com", createdUser.getCorreo());
+        // Comprueba que la contraseña se ha encriptado
+        assertNotEquals("password", createdUser.getContrasena());
+    }
+
+    @Test
+    void testConsultarUsuario() {
+        String correo = "test@example.com";
+        User user = new User();
+        user.setCorreo(correo);
+
+        when(userRepository.findByCorreo(correo)).thenReturn(user);
+
+        UserDto userDto = userService.consultarUsuario(correo);
+
+        assertNotNull(userDto);
+        assertEquals(correo, userDto.getCorreo());
+    }
+
+    @Test
+    void testActualizarUsuario() {
+        String correo = "test@example.com";
+        UserDto userDto = new UserDto();
+        userDto.setNombre("Nombre Actualizado");
+        userDto.setApellidos("Apellidos Actualizados");
+
+        User user = new User();
+        user.setCorreo(correo);
+
+        when(userRepository.findByCorreo(correo)).thenReturn(user);
+        when(userRepository.save(any(User.class))).thenReturn(user);
+
+        UserDto updatedUserDto = userService.actualizarUsuario(correo, userDto);
+
+        assertNotNull(updatedUserDto);
+        assertEquals("Nombre Actualizado", updatedUserDto.getNombre());
+        assertEquals("Apellidos Actualizados", updatedUserDto.getApellidos());
+    }
+
+    @Test
+    void testBorrarUsuarioPorEmail() {
+        String correo = "test@example.com";
+        User user = new User();
+        user.setCorreo(correo);
+
+        when(userRepository.findByCorreo(correo)).thenReturn(user);
+
+        assertDoesNotThrow(() -> userService.borrarUsuarioPorEmail(correo));
+    }
+
+    @Test
+    void testBorrarUsuarioPorEmailUsuarioNoEncontrado() {
+        String correo = "test@example.com";
+
+        when(userRepository.findByCorreo(correo)).thenReturn(null);
+
+        assertThrows(UsernameNotFoundException.class, () -> userService.borrarUsuarioPorEmail(correo));
+    }
+
 
 
     @Test
