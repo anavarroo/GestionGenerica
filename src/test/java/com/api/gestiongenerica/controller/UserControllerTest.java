@@ -46,27 +46,7 @@ class UserControllerTest {
         assertEquals(userDto, response.getBody());
     }
 
-    /*
-    @Test
-    void actualizarUsuario_EditaDatosDeUsuario_RespuestaConUserDtoActualizado() {
-        // Arrange
-        UserServiceI mockUserService = mock(UserServiceI.class);
-        UserDto userDto = new UserDto();
-        when(mockUserService.actualizarUsuario(anyString(), any(UserDto.class))).thenReturn(userDto);
-        UserController userController = new UserController(mockUserService);
 
-        // Act
-        ResponseEntity<UserDto> response = userController.actualizarUsuario("correo", new UserDto());
-
-        // Assert
-        assertNotNull(response);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertNotNull(response.getBody());
-        assertEquals(userDto, response.getBody());
-    }
-
-
-     */
     @Test
     void borrarUsuarioPorEmail_EliminaUsuarioPorCorreo() {
         // Arrange
