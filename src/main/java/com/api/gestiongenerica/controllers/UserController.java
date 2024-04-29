@@ -35,6 +35,7 @@ public class UserController {
 
 
     /**
+     * HOLA
      * Consultar un usuario por su correo.
      *
      * @param correo Correo del usuario.
