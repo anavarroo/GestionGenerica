@@ -56,16 +56,15 @@ public class UserController {
      * Edita los datos de un usuario.
      *
      * @param userDto Objeto UserDto con la nueva información del usuario.
-     * @param authentication Objeto Authentication para obtener el correo
+     * @param correo Objeto Authentication para obtener el correo
      *                       del usuario autenticado.
      * @return ResponseEntity con el objeto UserDto actualizado.
      */
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @PutMapping("/editar")
+    @PutMapping("/editar/{correo}")
     public ResponseEntity<UserDto> actualizarUsuario(
             @RequestBody UserDto userDto,
-            Authentication authentication) {
-        String correo = authentication.getName();
+            @PathVariable String correo) {
         UserDto usuarioActualizado = userServiceI.actualizarUsuario(correo, userDto);
         return ResponseEntity.ok(usuarioActualizado);
     }
