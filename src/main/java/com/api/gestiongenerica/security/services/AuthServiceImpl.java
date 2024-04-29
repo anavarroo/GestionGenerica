@@ -1,6 +1,5 @@
 package com.api.gestiongenerica.security.services;
 
-import com.api.gestiongenerica.persistence.model.Role;
 import com.api.gestiongenerica.persistence.model.User;
 import com.api.gestiongenerica.persistence.repository.UserRepositoryI;
 import com.api.gestiongenerica.security.model.AuthResponse;
@@ -40,10 +39,8 @@ public class AuthServiceImpl implements AuthServiceI {
     @Override
     public AuthResponse register(RegisterRequest request) {
         User user = new User(request.getNombre(),
-                request.getApellidos(), request.getEdad(), request.getCorreo(),
-                request.getDireccion(), request.getTelefono(),
-                passwordEncoder.encode(request.getContrasena()),
-                Role.USER);
+                request.getApellidos(), request.getCorreo(),
+                passwordEncoder.encode(request.getContrasena()));
 
         userRepo.save(user);
 
