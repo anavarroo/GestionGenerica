@@ -1,9 +1,12 @@
 package com.api.gestiongenerica.security.model;
 
+import com.api.gestiongenerica.persistence.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Data
 @Builder
@@ -16,15 +19,11 @@ public class RegisterRequest {
     /** Los apellidos proporcionados en la solicitud de registro **/
     private String apellidos;
 
-    private int edad;
-
     /** El correo electrónico proporcionado en la solicitud de registro. */
     private String correo;
 
-    private String direccion;
-
-    private int telefono;
 
     /** La contraseña proporcionada en la solicitud de registro. */
     private String contrasena;
+
 }

@@ -15,14 +15,15 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableWebMvc
 @EnableWebSecurity
-public class SecuriryConfig {
+public class SecurityConfig {
 
-    private JWTAuthenticationFilter jwtAuthenticationFilter;
+    private final JWTAuthenticationFilter jwtAuthenticationFilter;
 
-    private AuthenticationProvider authenticationProvider;
+    private final AuthenticationProvider authenticationProvider;
 
     @Autowired
-    public SecuriryConfig(JWTAuthenticationFilter jwtAuthenticationFilter, AuthenticationProvider authenticationProvider) {
+    public SecurityConfig(JWTAuthenticationFilter jwtAuthenticationFilter,
+                          AuthenticationProvider authenticationProvider) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.authenticationProvider = authenticationProvider;
     }
@@ -36,11 +37,29 @@ public class SecuriryConfig {
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+/*
+        return httpSecurity.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authRequest ->
+                        authRequest.requestMatchers("/auth/**",
+                                "/v3/api-docs/**",
+                                "/configuration/**").permitAll()
+                                .requestMatchers("/usuarios/user/**").
+                                hasAuthority("USER")
+                                .requestMatchers("/usuarios/**")
+                                .hasAuthority("ADMIN").anyRequest().authenticated())
+                .sessionManagement(sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
+
+ */
         return httpSecurity.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authRequest ->
                         authRequest.requestMatchers("/auth/**",
-                                "/usuarios/public/**",
+                                "/usuarios/**",
                                 "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-resources/**",
                                 "/configuration/**").permitAll().anyRequest().authenticated())
                 .sessionManagement( sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)

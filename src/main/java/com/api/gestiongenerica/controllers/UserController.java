@@ -5,6 +5,8 @@ import com.api.gestiongenerica.persistence.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import com.api.gestiongenerica.services.UserServiceI;
 
@@ -33,33 +35,18 @@ public class UserController {
         return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
     }
 
-
-    /**
-     * HOLA
-     * Consultar un usuario por su correo.
-     *
-     * @param correo Correo del usuario.
-     * @return ResponseEntity con el objeto UserDto.
-     */
-    @GetMapping("/{correo}")
-    public ResponseEntity<UserDto> consultarUsuario(
-            @PathVariable String correo) {
-        UserDto userDto = userServiceI.consultarUsuario(correo);
-        return ResponseEntity.ok(userDto);
-    }
-
-
     /**
      * Edita los datos de un usuario.
      *
-     * @param correo Correo del usuario.
      * @param userDto Objeto UserDto con la nueva información del usuario.
+     * @param correo Objeto Authentication para obtener el correo
+     *                       del usuario autenticado.
      * @return ResponseEntity con el objeto UserDto actualizado.
      */
     @PutMapping("/editar/{correo}")
     public ResponseEntity<UserDto> actualizarUsuario(
-            @PathVariable String correo,
-            @RequestBody UserDto userDto) {
+            @RequestBody UserDto userDto,
+            @PathVariable String correo) {
         UserDto usuarioActualizado = userServiceI.actualizarUsuario(correo, userDto);
         return ResponseEntity.ok(usuarioActualizado);
     }
@@ -70,9 +57,86 @@ public class UserController {
      *
      * @param correo La dirección de correo electrónico del usuario que se va a eliminar.
      */
-    @DeleteMapping("borrar/{correo}")
+    @DeleteMapping("/borrar/{correo}")
     public void borrarUsuarioPorEmail(@PathVariable String correo) {
         userServiceI.borrarUsuarioPorEmail(correo);
     }
 
+    /**
+     * Consultar un usuario por su correo.
+     *
+     * @param nombre Nombre del usuario.
+     * @return ResponseEntity con el objeto UserDto.
+     */
+    @GetMapping("/nombre/{nombre}")
+    public ResponseEntity<UserDto> consultarUsuarioPorNombre(
+            @PathVariable String nombre) {
+        UserDto userDto = userServiceI.consultarUsuarioPorNombre(nombre);
+        return ResponseEntity.ok(userDto);
+    }
+
+    /**
+     * Consultar un usuario por su correo.
+     *
+     * @param apellidos Apellidos del usuario.
+     * @return ResponseEntity con el objeto UserDto.
+     */
+    @GetMapping("/apellidos/{apellidos}")
+    public ResponseEntity<UserDto> consultarUsuarioPorApellidos(
+            @PathVariable String apellidos) {
+        UserDto userDto = userServiceI.consultarUsuarioPorApellidos(apellidos);
+        return ResponseEntity.ok(userDto);
+    }
+
+    /**
+     * Consultar un usuario por su correo.
+     *
+     * @param edad Edad del usuario.
+     * @return ResponseEntity con el objeto UserDto.
+     */
+    @GetMapping("/edad/{edad}")
+    public ResponseEntity<UserDto> consultarUsuarioPorEdad(
+            @PathVariable int edad) {
+        UserDto userDto = userServiceI.consultarUsuarioPorEdad(edad);
+        return ResponseEntity.ok(userDto);
+    }
+
+    /**
+     * Consultar un usuario por su correo.
+     *
+     * @param correo Correo del usuario.
+     * @return ResponseEntity con el objeto UserDto.
+     */
+    @GetMapping("/correo/{correo}")
+    public ResponseEntity<UserDto> consultarUsuarioPorCorreo(
+            @PathVariable String correo) {
+        UserDto userDto = userServiceI.consultarUsuarioPorCorreo(correo);
+        return ResponseEntity.ok(userDto);
+    }
+
+    /**
+     * Consultar un usuario por su correo.
+     *
+     * @param direccion Direccion del usuario.
+     * @return ResponseEntity con el objeto UserDto.
+     */
+    @GetMapping("/direccion/{direccion}")
+    public ResponseEntity<UserDto> consultarUsuarioPorDireccion(
+            @PathVariable String direccion) {
+        UserDto userDto = userServiceI.consultarUsuarioPorDireccion(direccion);
+        return ResponseEntity.ok(userDto);
+    }
+
+    /**
+     * Consultar un usuario por su correo.
+     *
+     * @param telefono Telefono del usuario.
+     * @return ResponseEntity con el objeto UserDto.
+     */
+    @GetMapping("/telefono/{telefono}")
+    public ResponseEntity<UserDto> consultarUsuarioPorTelefono(
+            @PathVariable int telefono) {
+        UserDto userDto = userServiceI.consultarUsuarioPorTelefono(telefono);
+        return ResponseEntity.ok(userDto);
+    }
 }
