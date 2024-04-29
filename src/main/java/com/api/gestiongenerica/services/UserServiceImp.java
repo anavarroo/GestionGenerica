@@ -67,7 +67,6 @@ public class UserServiceImp implements UserServiceI{
 
         user.setNombre(userDto.getNombre());
         user.setApellidos(userDto.getApellidos());
-        user.setCorreo(userDto.getCorreo());
         user.setEdad(userDto.getEdad());
         user.setDireccion(userDto.getDireccion());
         user.setTelefono(userDto.getTelefono());
