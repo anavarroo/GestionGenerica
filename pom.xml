@@ -94,6 +94,12 @@
 			<version>0.8.12</version>
 		</dependency>
 
+		<!-- Factor de doble autenticacion -->
+		<dependency>
+			<groupId>org.jboss.aerogear</groupId>
+			<artifactId>aerogear-otp-java</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 
 	</dependencies>
 

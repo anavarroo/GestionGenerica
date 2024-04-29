@@ -19,17 +19,11 @@ public class RegisterRequest {
     /** Los apellidos proporcionados en la solicitud de registro **/
     private String apellidos;
 
-    private int edad;
-
     /** El correo electrónico proporcionado en la solicitud de registro. */
     private String correo;
 
-    private String direccion;
-
-    private int telefono;
 
     /** La contraseña proporcionada en la solicitud de registro. */
     private String contrasena;
 
-    private Set<Role> roles;
 }
